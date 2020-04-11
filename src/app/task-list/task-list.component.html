@@ -1,0 +1,43 @@
+<form class="form-inline">
+  <input
+    class="form-control"
+    name="searchInput"
+    placeholder="Search"
+    #searchInput="ngModel"
+    [(ngModel)]="searchText"
+    style="width: 80%;"
+  />
+  <button class="btn btn-outline-primary" (click)="searchText = ''">X</button>
+</form>
+<table class="table table-sm">
+  <thead>
+    <th>Task</th>
+    <th>Task Description</th>
+    <th>Start</th>
+    <th>Due</th>
+    <th></th>
+  </thead>
+  <ng-container *ngFor="let task of taskArray">
+    <tr class="table-dark" *ngIf="filterCondition(task)">
+      <td>{{ task.Task_Todo }}</td>
+      <td>{{ task.Task_Description }}</td>
+      <td>{{ task.Start }}</td>
+      <td>{{ task.Due }}</td>
+      <td>
+        <button
+          class="btn btn-outline-info"
+          (click)="taskService.populateForm(task)"
+        >
+          Edit
+        </button>
+        <button class="btn btn-outline-danger" (click)="onDelete(task.$key)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </ng-container>
+</table>
+
+<div class="alert alert-danger" *ngIf="showDeletedMessage">
+  Deleted Successfully!
+</div>

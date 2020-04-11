@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "TodoCRUD"
+    }
+  },
+  "defaultProject": "TodoCRUD",
+  "cli": {
+    "analytics": false
+  }
 }
